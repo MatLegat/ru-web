@@ -38,13 +38,10 @@
             $now = time();
             if(file_exists($cache) && $now < $expires)
             {
-                echo("cache");
                 return file_get_contents($cache);
             }
             else
             {
-                echo("get");
-
                 $content = $this->getUrl($url);
                 file_put_contents($cache, $content);
                 return $content;
