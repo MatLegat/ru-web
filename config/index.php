@@ -1,6 +1,6 @@
 <?php
     define('VIEW', true);
-    include_once('ru.php');
+    include_once('../ru.php');
     $ru = new RU();
     $day = $ru->getDay();
     $tags = $ru->getTags();
@@ -28,6 +28,6 @@
         <button onclick="minus()">&#x2212;</button>
         <button onclick="save()">Salvar</button>
         <button onclick="plus()">+</button>
-        <br><a onclick="reset()" href="."><sub>reset</sub></a>
+        <br><a onclick="reset()" href=".."><sub>reset</sub></a>
     </body>
 </html>

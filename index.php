@@ -38,7 +38,7 @@
                 $nextDis = "disabled";
             }
          ?>
-        <p><sub><a href="config.php">configurar</a></sub></p>
+        <p><sub><a href="config/">configurar</a></sub></p>
         <button class="back" <?php echo $backDis ?> onclick="window.location.href='.?day=<?php echo $day-1 ?>'">
             &lt;
         </button>
