@@ -5,7 +5,9 @@
 
         public function __construct()
         {
-            $ruHtml = $this->getUrl('http://ru.ufsc.br/ru/');
+            date_default_timezone_set("America/Sao_Paulo");
+
+            $ruHtml = $this->getHtml();
 
             $ruDom = new DOMDocument();
         	@$ruDom->loadHTML($ruHtml);
@@ -26,6 +28,27 @@
         public function getTags()
         {
             return $this->tags;
+        }
+
+        private function getHtml()
+        {
+            $cache = 'cache/ru';
+            $url = 'http://ru.ufsc.br/ru/';
+            $expires = filemtime($cache) + 60;
+            $now = time();
+            if(file_exists($cache) && $now < $expires)
+            {
+                echo("cache");
+                return file_get_contents($cache);
+            }
+            else
+            {
+                echo("get");
+
+                $content = $this->getUrl($url);
+                file_put_contents($cache, $content);
+                return $content;
+            }
         }
 
         private function getUrl($url)
@@ -96,7 +119,6 @@
             }
             if (!isset($day) || $day >= 7 || $day < 0)
             {
-                date_default_timezone_set("America/Sao_Paulo");
                 $day = date("N", time()) - 1;
             }
             return $day;
