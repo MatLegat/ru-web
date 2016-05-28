@@ -37,7 +37,7 @@
 
         private function getHtml()
         {
-            $cache = $_SERVER['DOCUMENT_ROOT'] . 'cache/ru';
+            $cache = $_SERVER['DOCUMENT_ROOT'] . '/cache/ru';
             $url = 'http://ru.ufsc.br/ru/';
             $expires = filemtime($cache) + 60;
             $now = time();
