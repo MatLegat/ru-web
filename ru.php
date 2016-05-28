@@ -39,7 +39,7 @@
         {
             $cache = $_SERVER['DOCUMENT_ROOT'] . '/cache/ru';
             $url = 'http://ru.ufsc.br/ru/';
-            $expires = filemtime($cache) + 60;
+            $expires = @filemtime($cache) + 60;
             $now = time();
             if(file_exists($cache) && $now < $expires)
             {
