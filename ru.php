@@ -22,6 +22,11 @@
 
         public function getMenu($day)
         {
+            if (isset($_GET["json"]))
+            {
+                header('Content-Type: application/json; charset=utf-8');
+                die(json_encode($this->menuArray[$day],  JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+            }
             return $this->menuArray[$day];
         }
 
@@ -32,7 +37,7 @@
 
         private function getHtml()
         {
-            $cache = 'cache/ru';
+            $cache = $_SERVER['DOCUMENT_ROOT'] . 'cache/ru';
             $url = 'http://ru.ufsc.br/ru/';
             $expires = filemtime($cache) + 60;
             $now = time();
@@ -69,6 +74,10 @@
             $tagsDom = $tableHeader->getElementsByTagName('td');
             foreach ($tagsDom as $tag) {
                 $value = trimAll($tag->textContent);
+                if ($value == "")
+                {
+                    $value = "Dia";
+                }
                 $width = (int)$tag->getAttribute('colspan');
                 if ($width < 1)
                 {
@@ -100,6 +109,7 @@
                             {
                                 $day[$tags[$cellKey]][] = trimAll($dish);
                             }
+                            $day[$tags[$cellKey]] = array_filter($day[$tags[$cellKey]]);
                         }
                     }
                     $menuArray[] = $day;
