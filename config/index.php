@@ -13,9 +13,9 @@
         <meta http-equiv="Content-Language" content="pt-br, en">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <title> RU UFSC Trindade </title>
-        <link rel="stylesheet" type="text/css" href="/_css/ru.css" />
-        <script type="text/javascript" src="/_js/ru.js"></script>
-        <script type="text/javascript" src="/_js/analytics.js"></script>
+        <link rel="stylesheet" type="text/css" href="/ru.css" />
+        <script type="text/javascript" src="/ru.js"></script>
+        <script type="text/javascript" src="https://legat.ml/_js/analytics.js"></script>
     </head>
     <body>
         <?php foreach ($tags as $tag) {
