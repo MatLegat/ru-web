@@ -153,5 +153,5 @@
     }
 
     if(!defined('VIEW')){
-        header('Location:.');
+        header('Location:/');
     }
