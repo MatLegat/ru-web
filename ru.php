@@ -25,7 +25,9 @@
             if (isset($_GET["json"]))
             {
                 header('Content-Type: application/json; charset=utf-8');
-                die(json_encode($this->menuArray[$day],  JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+                $array = $this->menuArray[$day];
+                fixArrayKey($array);
+                die(json_encode($array,  JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
             }
             return $this->menuArray[$day];
         }
@@ -150,6 +152,25 @@
     function trimAll($string)
     {
         return trim($string, " \t\n\r\0\x0B\xC2\xA0");
+    }
+
+    function fixArrayKey(&$arr)
+    {
+        $arr = array_combine(
+            array_map(
+                function ($str) {
+                    return str_replace(" ", "", $str);
+                },
+                array_keys($arr)
+            ),
+            array_values($arr)
+        );
+
+        foreach ($arr as $key => $val) {
+            if (is_array($val)) {
+                fixArrayKey($arr[$key]);
+            }
+        }
     }
 
     if(!defined('VIEW')){
