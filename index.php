@@ -4,7 +4,9 @@
     $ru = new RU();
     $day = $ru->getDay();
     $menu = $ru->getMenu($day);
+
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,7 +21,11 @@
     <body>
         <?php foreach ($menu as $tag => $group) { ?>
             <?php if ($tag == "Dia") { ?>
-                <h2><?php echo $group[0] ?></h2>
+                <h2>
+                    <?php foreach ($group as $line) { ?>
+                            <?php echo $line ?><br />
+                    <?php } ?>
+                </h2>
             <?php } else { ?>
                 <h3><?php echo $tag; ?></h3>
                 <?php foreach ($group as $dish) { ?>
